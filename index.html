@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Resume Builder</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: #f8f9fa;
+      padding: 20px;
+    }
+    .resume-preview {
+      border: 1px solid #ccc;
+      padding: 20px;
+      background: #fff;
+    }
+    h2 {
+      border-bottom: 2px solid #000;
+      padding-bottom: 5px;
+      margin-top: 20px;
+    }
+    .section {
+      margin-bottom: 15px;
+    }
+    #downloadBtn {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center mb-4">Digital Resume Builder</h1>
+    <div class="row">
+      <!-- Form -->
+      <div class="col-md-6">
+        <form id="resumeForm">
+          <h4>Personal Information</h4>
+          <div class="mb-3">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="fullName" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Phone</label>
+            <input type="tel" class="form-control" id="phone" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">LinkedIn</label>
+            <input type="url" class="form-control" id="linkedin" />
+          </div>
+          <h4>Education</h4>
+          <div class="mb-3">
+            <label class="form-label">Degree</label>
+            <input type="text" class="form-control" id="degree" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">College</label>
+            <input type="text" class="form-control" id="college" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Year of Passing</label>
+            <input type="text" class="form-control" id="year" />
+          </div>
+          <h4>Experience</h4>
+          <div class="mb-3">
+            <label class="form-label">Company</label>
+            <input type="text" class="form-control" id="company" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Role</label>
+            <input type="text" class="form-control" id="role" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Duration</label>
+            <input type="text" class="form-control" id="duration" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea class="form-control" id="expDesc" rows="3"></textarea>
+          </div>
+          <button type="button" class="btn btn-primary" onclick="generateResume()">Generate Resume</button>
+        </form>
+      </div>
+
+      <!-- Resume Preview -->
+      <div class="col-md-6">
+        <div class="resume-preview" id="resumePreview">
+          <h2 id="prevName">Your Name</h2>
+          <p id="prevContact">Email | Phone | LinkedIn</p>
+          <div class="section">
+            <h4>Education</h4>
+            <p id="prevEdu">Degree at College (Year)</p>
+          </div>
+          <div class="section">
+            <h4>Experience</h4>
+            <p><strong id="prevRole">Role</strong> at <span id="prevCompany">Company</span> (<span id="prevDuration">Duration</span>)</p>
+            <p id="prevDesc">Experience description here.</p>
+          </div>
+        </div>
+        <button class="btn btn-success" id="downloadBtn" onclick="downloadPDF()">Download as PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and jsPDF -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    function generateResume() {
+      document.getElementById("prevName").textContent = document.getElementById("fullName").value || "Your Name";
+      document.getElementById("prevContact").textContent = 
+        `${document.getElementById("email").value || ""} | ${document.getElementById("phone").value || ""} | ${document.getElementById("linkedin").value || ""}`;
+      document.getElementById("prevEdu").textContent = 
+        `${document.getElementById("degree").value || ""} at ${document.getElementById("college").value || ""} (${document.getElementById("year").value || ""})`;
+      document.getElementById("prevRole").textContent = document.getElementById("role").value || "Role";
+      document.getElementById("prevCompany").textContent = document.getElementById("company").value || "Company";
+      document.getElementById("prevDuration").textContent = document.getElementById("duration").value || "Duration";
+      document.getElementById("prevDesc").textContent = document.getElementById("expDesc").value || "Experience description.";
+    }
+
+    function downloadPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      const elementHTML = document.getElementById("resumePreview").innerText;
+      const lines = doc.splitTextToSize(elementHTML, 180);
+      doc.text(lines, 15, 15);
+      doc.save("resume.pdf");
+    }
+  </script>
+  <link rel="stylesheet" href="style.css" />
+<script src="script.js"></script>
+
+</body>
+</html>

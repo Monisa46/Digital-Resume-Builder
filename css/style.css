@@ -1,0 +1,207 @@
+/* General Styling */
+body {
+  background-color: #f4f7f9;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+h1, h2, h4 {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Form Styling */
+form {
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+form:hover {
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.08);
+}
+
+form h4 {
+  margin-top: 20px;
+  margin-bottom: 15px;
+  border-left: 4px solid #007bff;
+  padding-left: 10px;
+  color: #007bff;
+}
+
+form .form-control {
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  margin-bottom: 10px;
+  border: 1px solid #ced4da;
+  transition: border 0.3s;
+}
+
+form .form-control:focus {
+  border-color: #007bff;
+  box-shadow: none;
+}
+
+button.btn-primary {
+  background-color: #007bff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+/* Resume Preview Styling */
+.resume-preview {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 0px 5px 12px rgba(0, 0, 0, 0.05);
+  min-height: 500px;
+  margin-top: 20px;
+}
+
+.resume-preview h2 {
+  font-size: 24px;
+  color: #2c3e50;
+  margin-bottom: 5px;
+}
+
+.resume-preview p {
+  font-size: 15px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.resume-preview h4 {
+  font-size: 18px;
+  border-bottom: 1px solid #bbb;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  padding-bottom: 4px;
+  color: #007bff;
+}
+
+.resume-preview .section {
+  margin-bottom: 15px;
+}
+
+/* Download Button */
+#downloadBtn {
+  margin-top: 20px;
+  display: inline-block;
+  background-color: #28a745;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: background 0.3s ease;
+}
+
+#downloadBtn:hover {
+  background-color: #1e7e34;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .row {
+    flex-direction: column;
+  }
+
+  .resume-preview {
+    margin-top: 30px;
+  }
+}
+
+/* Input Icons (Optional if using) */
+.form-label::after {
+  content: '*';
+  color: red;
+  font-size: 14px;
+  margin-left: 3px;
+  visibility: hidden;
+}
+
+input:required + .form-label::after,
+textarea:required + .form-label::after {
+  visibility: visible;
+}
+
+/* Highlight Sections */
+.section-highlight {
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-left: 4px solid #007bff;
+  margin-bottom: 15px;
+}
+
+/* Typography */
+.resume-preview strong {
+  color: #000;
+}
+
+/* Utility Classes */
+.text-muted {
+  color: #888 !important;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem !important;
+}
+
+.mt-3 {
+  margin-top: 1rem !important;
+}
+
+/* Print Optimization */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .resume-preview, .resume-preview * {
+    visibility: visible;
+  }
+  .resume-preview {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+  }
+}
+
+/* Animations (Optional) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.resume-preview {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* End of CSS */
